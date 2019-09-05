@@ -8,13 +8,14 @@
     "type": "git",
     "url": "http://github.com/michaelord/cookie-policy.git"
   },
-  "devDependencies": {
+  "devDependencies": {},
+  "author": "michaelord",
+  "keywords": [],
+  "dependencies": {
     "components/libs": "http://github.com/michaelord/libs.git",
     "components/block": "http://github.com/michaelord/block.git",
     "components/editable": "http://github.com/michaelord/editable.git",
     "components/layout": "http://github.com/michaelord/layout.git",
     "components/form": "http://github.com/michaelord/form.git"
-  },
-  "author": "michaelord",
-  "keywords": []
+  }
 }
