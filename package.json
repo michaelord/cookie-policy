@@ -1,21 +1,24 @@
 {
-  "name": "cookie-policy",
-  "private": true,
-  "description": "...",
-  "version": "0.1.0",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/michaelord/cookie-policy.git"
-  },
-  "devDependencies": {},
-  "author": "michaelord",
-  "keywords": [],
-  "dependencies": {
-    "components/libs": "http://github.com/michaelord/libs.git",
-    "components/block": "http://github.com/michaelord/block.git",
-    "components/editable": "http://github.com/michaelord/editable.git",
-    "components/layout": "http://github.com/michaelord/layout.git",
-    "components/form": "http://github.com/michaelord/form.git"
-  }
+	"name": "cookie-policy",
+	"private": true,
+	"description": "...",
+	"version": "0.1.0",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "http://github.com/michaelord/cookie-policy.git"
+	},
+	"devDependencies": {},
+	"author": "michaelord",
+	"keywords": [],
+	"dependencies": {
+		"browser-cookie-lite": "^1.0.4",
+		"components/block": "http://github.com/michaelord/block.git",
+		"components/editable": "http://github.com/michaelord/editable.git",
+		"components/form": "http://github.com/michaelord/form.git",
+		"components/layout": "http://github.com/michaelord/layout.git",
+		"components/libs": "http://github.com/michaelord/libs.git",
+		"react-transition-group": "^4.3.0",
+		"components/types": "http://github.com/michaelord/types.git"
+	}
 }

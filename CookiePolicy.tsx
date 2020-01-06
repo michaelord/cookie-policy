@@ -1,29 +1,23 @@
-import React, {useState} from 'react';
-
-import './CookiePolicy.scss';
-
-import {getModifiers} from 'components/libs';
+// @ts-ignore
+import {cookie} from 'browser-cookie-lite';
 import {Box} from 'components/block';
 import {Heading, RichText} from 'components/editable';
-import {Container} from 'components/layout';
 import {Button} from 'components/form';
-
-const setCookie = (name: string, value: string, expiration: number): void => {
-	console.log('set', name, value, expiration);
-};
-
-const getCookie = (name: string): string => {
-	console.log('get', name);
-	return 'never';
-};
+import {Container} from 'components/layout';
+import {getModifiers} from 'components/libs';
+import 'components/pre-header/Transition.scss';
+import * as Types from 'components/types';
+import React, {useState} from 'react';
+import {CSSTransition} from 'react-transition-group';
+import './CookiePolicy.scss';
 
 type Props = {
-	prefix?: string;
-	expirationDays?: number;
-	lastUpdated?: string;
-	title?: string;
-	content: string;
-	accept: string;
+	content: Types.RichText;
+	expirationDays?: Types.Number;
+	lastUpdated?: Types.Text;
+	prefix?: Types.Text;
+	title?: Types.Text;
+	accept: Types.Text;
 };
 
 const COOKIE_NAME: string = 'cookiePolicyAccepted';
@@ -35,31 +29,31 @@ export const CookiePolicy = (props: Props) => {
 
 	const cookieName = `${prefix}${COOKIE_NAME}`;
 
-	const [accepted, setAccepted] = useState(getCookie(cookieName) === lastUpdated);
+	const [accepted, setAccepted] = useState(cookie(cookieName) === lastUpdated);
 
 	const atts: object = {
-		className: getModifiers(base, {
-			accepted,
-		}),
+		className: getModifiers(base, {}),
 	};
 
 	const onAccept = (ev: MouseEvent) => {
 		ev.preventDefault();
-		setCookie(cookieName, lastUpdated, expirationDays);
+		cookie(cookieName, lastUpdated, 60 * 60 * 24 * expirationDays, '/');
 		setAccepted(true);
 	};
 
 	return (
-		<div {...atts}>
-			<Container width="xxl">
-				<div className={`${base}__main`}>
-					<Box>
-						<Heading title={title} />
-						<RichText content={content} />
-						<Button onClick={onAccept} label={accept} priority="primary" isWide />
-					</Box>
-				</div>
-			</Container>
-		</div>
+		<CSSTransition in={!accepted} timeout={300} classNames="display" unmountOnExit>
+			<div {...atts}>
+				<Container width="full">
+					<div className={`${base}__main`}>
+						<Box>
+							<Heading title={title} />
+							<RichText content={content} />
+							<Button onClick={onAccept} label={accept} priority="primary" isWide />
+						</Box>
+					</div>
+				</Container>
+			</div>
+		</CSSTransition>
 	);
 };
